@@ -1,11 +1,6 @@
-import { setTitle } from "./SEOHead";
-import { setNameMeta, setPropertyMeta } from "./SEOmeta";
-import { setSEO } from "./SEOSetup";
+import transformSEO from "./SEOSetup";
 
 const SEO = {
-	setPropertyMeta,
-	setNameMeta,
-	setTitle,
-	setSEO,
+	transformSEO,
 };
 export default SEO;
