@@ -1,1 +1,3 @@
-export const server = process.env.NEXT_PUBLIC_SERVER_URL;
+export const server = {
+	API_TIMEOUT: 10000,
+};

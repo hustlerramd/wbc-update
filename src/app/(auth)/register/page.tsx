@@ -1,15 +1,3 @@
-import type { Metadata } from "next";
-import "../../globals.css";
-import siteConstants from "@/model/constants";
-
-export async function generateMetadata({ params: { id } }: { params: { id: string } }): Promise<Metadata> {
-	const res = await fetch(siteConstants.ENV.SERVER_URL + "meta/product/" + id);
-	if (!res.ok) {
-		throw new Error("Failed to fetch data");
-	}
-
-	return res.json();
-}
 export default function Home() {
 	return (
 		<main className="flex min-h-screen flex-col items-center justify-between p-24">

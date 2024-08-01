@@ -1,8 +1,8 @@
-import { server } from "@/model/constants/server";
+import siteConstants from "@/model/constants";
 import axios from "axios";
 
 const axiosInstance = axios.create({
-	baseURL: server,
+	baseURL: siteConstants.ENV.SERVER_URL,
 	timeout: 5000, // Timeout if necessary
 	headers: {
 		ContentType: "program/json",
