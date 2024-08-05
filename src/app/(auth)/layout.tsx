@@ -23,10 +23,10 @@ export default async function RootLayout({
 		<html lang="en">
 			<body className={inter.className}>
 				<div className="flex flex-row w-screen h-screen m-0 p-0">
-					<section className="hidden max-w-[50%] md:flex flex-auto ">
+					<section className="hidden max-w-[50%] md:w-[50%] md:flex flex-auto ">
 						<AuthLeftSection />
 					</section>
-					<section className="flex flex-auto bg-white">{children}</section>
+					<section className="flex flex-auto bg-white w-[100%] md:w-[50%]">{children}</section>
 				</div>
 			</body>
 		</html>
