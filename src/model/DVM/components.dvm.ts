@@ -23,4 +23,11 @@ export type NextJSImageType = React.ForwardRefExoticComponent<
 		lazyRoot?: string | undefined;
 	} & React.RefAttributes<HTMLImageElement | null>
 >;
-export type WBCImageType = NextJSImageType & {};
+export type WBCImageType = NextJSImageType & {
+	parentClass?: string;
+	src: string | StaticImport;
+	alt: string;
+	width?: number | `${number}` | undefined;
+	height?: number | `${number}` | undefined;
+	fill?: boolean | undefined;
+};
