@@ -1,12 +1,15 @@
 {
 	"auth": {
 		"text": {
+			"Dont_have_an_account": "Don’t have an account? ",
+			"Empowering_ambitious_women_to_succeed": "Empowering ambitious women to succeed",
 			"Welcome_to": "Welcome to",
-			"Womens_Business_Club": "Women's Business Club",
-			"Empowering_ambitious_women_to_succeed": "Empowering ambitious women to succeed"
+			"Womens_Business_Club": "Women's Business Club"
 		},
 		"action": {
-			"login": "Login"
+			"login": "Login",
+			"Register": "Register",
+			"ForgotPassword": "Forgot Password?"
 		},
 		"form": {
 			"email": {

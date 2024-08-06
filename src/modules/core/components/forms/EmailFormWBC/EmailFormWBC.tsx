@@ -17,8 +17,8 @@ const EmailFormWBC: React.FC<WBCEmailFormInputType> = (props: WBCEmailFormInputT
 	}, [props]);
 
 	return (
-		<div>
-			<label className="text-sm font-semibold text-gray-500">{label}</label>
+		<div className="flex flex-col">
+			<label className="text-sm font-semibold text-gray-500 pb-1">{label}</label>
 			<EmailInputWBC {...emailInputWBCProps} />
 		</div>
 	);
