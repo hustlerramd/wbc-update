@@ -1,0 +1,17 @@
+export const INPUT_TYPE = {
+	EMAIL: "email",
+	NUMBER: "number",
+	TEXT: "text",
+	PASSWORD: "password",
+	BUTTON: "button",
+	SUBMIT: "submit",
+	CHECKBOX: "checkbox",
+	COLOR: "color",
+	DATE: "date",
+	FILE: "file",
+	RADIO: "radio",
+	RANGE: "range",
+	HIDDEN: "hidden",
+	TEL: "tel",
+	URL: "url",
+};

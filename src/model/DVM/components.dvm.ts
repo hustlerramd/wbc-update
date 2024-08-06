@@ -1,5 +1,6 @@
 import { ImageLoader, OnLoadingComplete, PlaceholderValue, StaticImport } from "next/dist/shared/lib/get-img-props";
 import React from "react";
+import { btnEnum } from "../enum/component.enum";
 export type PureComponentType = {};
 export type NextJSImageType = Omit<
 	React.DetailedHTMLProps<React.ImgHTMLAttributes<HTMLImageElement>, HTMLImageElement>,
@@ -26,6 +27,7 @@ export type NextJSImageType = Omit<
 	lazyRoot?: string | undefined;
 } & React.RefAttributes<HTMLImageElement | null>;
 export type NextInput = React.DetailedHTMLProps<React.InputHTMLAttributes<HTMLInputElement>, HTMLInputElement>;
+export type NextButtonProps = React.DetailedHTMLProps<React.ButtonHTMLAttributes<HTMLButtonElement>, HTMLButtonElement>;
 
 export type WBCImageType = NextJSImageType & {
 	parentClass?: string;
@@ -38,8 +40,12 @@ export type WBCImageType = NextJSImageType & {
 	priority?: boolean | undefined;
 };
 export type WBCEmailInputType = NextInput;
-export type WBCPassportInputType = NextInput & {
+
+export type WBCPasswordInputType = NextInput & {
 	showEye?: boolean;
+};
+export type WbcButtonProps = NextButtonProps & {
+	btnType?: btnEnum;
 };
 
 export type SvgWBCType = {

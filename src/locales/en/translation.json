@@ -1,0 +1,22 @@
+{
+	"auth": {
+		"text": {
+			"Welcome_to": "Welcome to",
+			"Womens_Business_Club": "Women's Business Club",
+			"Empowering_ambitious_women_to_succeed": "Empowering ambitious women to succeed"
+		},
+		"action": {
+			"login": "Login"
+		},
+		"form": {
+			"email": {
+				"label": "Email",
+				"placeholder": "Email"
+			},
+			"password": {
+				"label": "Password",
+				"placeholder": "Password"
+			}
+		}
+	}
+}
