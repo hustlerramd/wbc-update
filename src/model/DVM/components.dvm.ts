@@ -62,6 +62,9 @@ export type SvgWBCType = {
 	height?: number;
 };
 
+export type WbcMaskType = {
+	isFullScreen?: boolean;
+};
 export type WBCEmailFormInputType = {
 	inputProps?: WBCEmailInputType;
 	name?: string;

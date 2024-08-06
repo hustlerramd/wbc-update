@@ -10,6 +10,7 @@ import PasswordFormWBC from "@/modules/core/components/forms/PasswordFormWBC";
 import { LoginFormNames } from "../../model/constants/login.form";
 import { WBC_THEME } from "@/model/constants/theme";
 import { btnEnum } from "@/model/enum/component.enum";
+import WbcMask from "@/modules/core/components/WbcMask";
 type LoginViewProps = {
 	handleLoginClick: React.MouseEventHandler<HTMLButtonElement>;
 };
@@ -48,6 +49,7 @@ const LoginView: React.FC<LoginViewProps> = (props: LoginViewProps) => {
 						<div>{errorMessage && <p>{errorMessage}</p>}</div>
 					</div>
 					<div className=" w-full">
+						<WbcMask isFullScreen={false} />
 						<span className="w-full text-right flex flex-row justify-end	flex-end ">
 							<WbcButton
 								btnType={btnEnum.action}
