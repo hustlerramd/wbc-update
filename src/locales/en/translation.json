@@ -14,11 +14,17 @@
 		"form": {
 			"email": {
 				"label": "Email",
-				"placeholder": "Email"
+				"placeholder": "Email",
+				"validation": {
+					"empty": "Please enter Email"
+				}
 			},
 			"password": {
 				"label": "Password",
-				"placeholder": "Password"
+				"placeholder": "Password",
+				"validation": {
+					"empty": "Please enter Password"
+				}
 			}
 		}
 	}

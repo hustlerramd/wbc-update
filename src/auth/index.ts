@@ -1,4 +1,5 @@
 import API from "@/api";
+import { LoginDataType } from "@/modules/core/models/DVM";
 import { AxiosResponse } from "axios";
 
 // Define User interface
@@ -8,7 +9,7 @@ export interface User {
 	email: string;
 }
 
-export const signIn = (formData: FormData): Promise<AxiosResponse<User[]>> => API.get<User[]>("/users");
+export const signIn = (formData: LoginDataType): Promise<AxiosResponse<User[]>> => API.get<User[]>("/users");
 export const fetchUsers = (): Promise<AxiosResponse<User[]>> => API.get<User[]>("/users");
 export const fetchUserById = (id: number): Promise<AxiosResponse<User>> => API.get<User>(`/users/${id}`);
 export const createUser = (userData: User): Promise<AxiosResponse<User>> => API.post<User>("/users", userData);

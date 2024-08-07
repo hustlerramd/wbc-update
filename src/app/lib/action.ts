@@ -1,19 +1,21 @@
 "use server";
 
 import { signIn } from "@/auth";
+import VALIDATE_AUTH from "@/modules/auth/api/helper";
+import { LoginDataType } from "@/modules/core/models/DVM";
 
-export async function authenticate(_currentState: unknown, formData: FormData) {
-	try {
-		await signIn(formData);
-	} catch (error: any) {
-		if (error) {
-			switch (error.type) {
-				case "CredentialsSignin":
-					return "Invalid credentials.";
-				default:
-					return "Something went wrong.";
-			}
+export async function authenticate(_currentState: LoginDataType, formData: LoginDataType) {
+	let invputValidation = VALIDATE_AUTH.login(formData.email, formData.password);
+	console.log("formData", formData);
+	console.log("invputValidation", invputValidation);
+	if (invputValidation !== null) {
+		return invputValidation;
+	} else {
+		try {
+			await signIn(formData);
+		} catch (error: any) {
+			return error;
 		}
-		throw error;
 	}
+	return formData;
 }

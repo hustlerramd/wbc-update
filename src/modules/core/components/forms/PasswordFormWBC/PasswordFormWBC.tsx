@@ -4,7 +4,7 @@ import { WBCPasswordFormInputType, WBCPasswordInputType } from "@/model/DVM/comp
 
 const PasswordFormWBC: React.FC<WBCPasswordFormInputType> = (props: WBCPasswordFormInputType) => {
 	const [passwordInputWBCProps, setPasswordInputWBCProps] = React.useState<WBCPasswordInputType>({});
-	const { label, name, placeholder, inputProps, required, showEye } = props;
+	const { label, name, onChange, value, placeholder, inputProps, required, showEye } = props;
 	useEffect(() => {
 		let passwordInputProps: WBCPasswordInputType = {};
 		passwordInputProps = { ...inputProps };
@@ -12,12 +12,20 @@ const PasswordFormWBC: React.FC<WBCPasswordFormInputType> = (props: WBCPasswordF
 		passwordInputProps.showEye = showEye;
 		passwordInputProps.placeholder = placeholder;
 		passwordInputProps.required = required;
+		if (value) {
+			passwordInputProps.value = value;
+		}
 		setPasswordInputWBCProps(passwordInputProps);
 	}, [props]);
+	const handleOnChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+		if (onChange) {
+			onChange(name as string, event.target.value);
+		}
+	};
 	return (
 		<div className="flex flex-col gap-1">
 			<label className="text-sm font-semibold text-gray-500 !leading-5">{label}</label>
-			<PasswordInputWBC {...passwordInputWBCProps} />
+			<PasswordInputWBC onChange={handleOnChange} {...passwordInputWBCProps} />
 		</div>
 	);
 };

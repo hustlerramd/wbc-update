@@ -17,6 +17,7 @@ const PasswordInputWBC: React.FC<WBCPasswordInputType> = (props) => {
 				<input
 					className="border !border-gray-500 !outline-gray-500	block rounded-[0.625rem] w-full h-12 px-4 py-3 text-sm !decoration-gray-500 !text-gray-500 "
 					type={INPUT_TYPE.TEXT}
+					autoComplete="off"
 					{...restPasswordProps}
 				/>
 				<span className="absolute brightness-100 hover:brightness-150 hover:cursor-pointer !h-6 !w-6 right-2 top-4" onClick={handleEyeClick}>
@@ -28,6 +29,7 @@ const PasswordInputWBC: React.FC<WBCPasswordInputType> = (props) => {
 				<input
 					className="border !border-gray-500 !outline-gray-500	block rounded-[0.625rem] w-full h-12 px-4 py-3 text-sm !decoration-gray-500 !text-gray-500 "
 					type={INPUT_TYPE.PASSWORD}
+					autoComplete="off"
 					{...restPasswordProps}
 				/>
 				<span className="absolute brightness-100 hover:brightness-150  hover:cursor-pointer !h-6 !w-6 right-2 top-4" onClick={handleEyeClick}>
@@ -39,6 +41,7 @@ const PasswordInputWBC: React.FC<WBCPasswordInputType> = (props) => {
 		<input
 			className="border !border-gray-500 !outline-gray-500	block rounded-[0.625rem] w-full h-12 px-4 py-3 text-sm !decoration-gray-500 !text-gray-500 "
 			type={INPUT_TYPE.PASSWORD}
+			autoComplete="off"
 			{...restPasswordProps}
 		/>
 	);

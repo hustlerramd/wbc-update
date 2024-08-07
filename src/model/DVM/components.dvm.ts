@@ -1,5 +1,5 @@
 import { ImageLoader, OnLoadingComplete, PlaceholderValue, StaticImport } from "next/dist/shared/lib/get-img-props";
-import React from "react";
+import React, { InputHTMLAttributes } from "react";
 import { btnEnum } from "../enum/component.enum";
 import { LinkProps } from "next/link";
 export type PureComponentType = {};
@@ -42,9 +42,9 @@ export type WBCImageType = NextJSImageType & {
 	fill?: boolean | undefined;
 	priority?: boolean | undefined;
 };
-export type WBCEmailInputType = NextInput;
+export type WBCEmailInputType = InputHTMLAttributes<HTMLInputElement>;
 
-export type WBCPasswordInputType = NextInput & {
+export type WBCPasswordInputType = InputHTMLAttributes<HTMLInputElement> & {
 	showEye?: boolean;
 };
 export type WbcButtonProps = NextButtonProps & {
@@ -71,6 +71,8 @@ export type WBCEmailFormInputType = {
 	label?: React.ReactNode;
 	placeholder?: string;
 	required?: boolean;
+	value?: string;
+	onChange?: (name: string, value: string) => void;
 };
 export type WBCPasswordFormInputType = {
 	inputProps?: WBCPasswordInputType;
@@ -79,4 +81,6 @@ export type WBCPasswordFormInputType = {
 	placeholder?: string;
 	required?: boolean;
 	showEye?: boolean;
+	value?: string;
+	onChange?: (name: string, value: string) => void;
 };
