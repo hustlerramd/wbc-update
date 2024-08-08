@@ -1,26 +1,42 @@
-import { UseActionStateResult } from "@/model/DVM/core.dvm";
+import { FieldErrors, UseActionStateResult } from "@/model/DVM/core.dvm";
 import { useCallback, useState } from "react";
 
-const useActionState = <D, R>(initialState: D, InitialResponse: R): UseActionStateResult<D> => {
-	const [state, setState] = useState<D>(initialState);
-	const [response, setResponse] = useState<R>(InitialResponse);
+const useActionState = <T, R>(initialState: T, InitialResonse: R | null): UseActionStateResult<T, R> => {
+	const [state, setState] = useState<T>(initialState);
+	const [response, setResponse] = useState<R | null>(InitialResonse);
 	const [isLoading, setIsLoading] = useState(false);
-	const [error, setError] = useState<D | null>(null);
+	const [error, setError] = useState<Error | null>(null);
+	const [fieldErrors, setFieldErrors] = useState<FieldErrors>({});
 
-	const execute = useCallback(async (action: () => R) => {
+	const execute = useCallback(async (formData: T, validate: (formData: T) => FieldErrors, action: () => Promise<R>) => {
+		if (validate) {
+			const errors = validate(formData);
+			const hasErrors = Object.values(errors).some((error) => error !== null);
+			setFieldErrors(errors);
+			if (hasErrors) {
+				setError(new Error("Validation failed"));
+				return;
+			}
+		}
+
 		setIsLoading(true);
 		setError(null);
 		try {
 			const result = await action();
 			setResponse(result);
 		} catch (err) {
-			setError(err as D);
+			setError(err as Error);
 		} finally {
 			setIsLoading(false);
 		}
 	}, []);
-
-	return { state, isLoading, error, execute };
+	const clearFieldError = (field: string) => {
+		setFieldErrors((prevErrors) => ({
+			...prevErrors,
+			[field]: null,
+		}));
+	};
+	return { state, isLoading, error, fieldErrors, execute, response, clearFieldError };
 };
 
 export default useActionState;

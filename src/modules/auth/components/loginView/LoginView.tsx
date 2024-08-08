@@ -8,51 +8,57 @@ import { useTranslation } from "react-i18next";
 import PasswordFormWBC from "@/modules/core/components/forms/PasswordFormWBC";
 import { LoginFormNames } from "../../model/constants/login.form";
 import { btnEnum } from "@/model/enum/component.enum";
-import WbcMask from "@/modules/core/components/WbcMask";
 import { LoginDataType } from "@/modules/core/models/DVM";
+import { FieldErrors } from "@/model/DVM/core.dvm";
 type LoginViewProps = {
 	handleLoginClick: React.MouseEventHandler<HTMLButtonElement>;
 	handlefORGOTClick: Function;
 	handleOnchange: Function;
 	loginData: LoginDataType;
-	errorMessage: LoginDataType | null;
+	errorMessage: FieldErrors;
+	isLoading: boolean;
+	error: Error | null;
 };
 const LoginView: React.FC<LoginViewProps> = (props: LoginViewProps) => {
 	const { t } = useTranslation();
 	const { pending } = useFormStatus();
-	const { handleLoginClick, handlefORGOTClick, errorMessage, handleOnchange, loginData } = props;
+	const { handleLoginClick, handlefORGOTClick, errorMessage, handleOnchange, loginData, isLoading, error } = props;
 
 	return (
-		<div className="basis-full md:basis-3/4 lg:basis-1/2 !w-full !min-w-full content-center	">
+		<div className="basis-full md:basis-3/4 lg:basis-1/2 !w-full !min-w-full content-center select-none	">
 			<div className="items-center max-w-[38rem] w-full flex justify-center flex-col gap-5 p-5 mx-auto">
 				<WbcImage src="/img/header-logo.svg" alt="logo" height={130} width={130} />
 				<div className="w-full flex flex-col gap-3 p-4 text-black ">
-					<EmailFormWBC
-						label={t("auth.form.email.label")}
-						name={LoginFormNames.Email}
-						placeholder={t("auth.form.email.placeholder")}
-						required
-						value={loginData.email}
-						onChange={() => handleOnchange()}
-						inputProps={{
-							className: "border !border-gray-500 !outline-gray-500	block rounded-[0.625rem] w-full h-12 px-4 py-3 text-sm !decoration-gray-500 !text-gray-500 ",
-						}}
-					/>
-					<div>{errorMessage && errorMessage.email && <p>{errorMessage.email}</p>}</div>
-					<div>
-						<PasswordFormWBC
-							showEye={true}
-							label={t("auth.form.password.label")}
-							name={LoginFormNames.Password}
-							placeholder={t("auth.form.password.placeholder")}
+					<div className=" w-full">
+						<EmailFormWBC
+							label={t("auth.form.email.label")}
+							name={LoginFormNames.Email}
+							placeholder={t("auth.form.email.placeholder")}
 							required
+							value={loginData.email}
 							onChange={() => handleOnchange()}
-							value={loginData.password}
 							inputProps={{
 								className: "border !border-gray-500 !outline-gray-500	block rounded-[0.625rem] w-full h-12 px-4 py-3 text-sm !decoration-gray-500 !text-gray-500 ",
 							}}
 						/>
-						<div>{errorMessage && errorMessage.password && <p>{errorMessage.password}</p>}</div>
+						<div className="text-red-500">{errorMessage && errorMessage.email && <p>{errorMessage.email}</p>}</div>
+					</div>
+					<div className=" w-full">
+						<div>
+							<PasswordFormWBC
+								showEye={true}
+								label={t("auth.form.password.label")}
+								name={LoginFormNames.Password}
+								placeholder={t("auth.form.password.placeholder")}
+								required
+								onChange={() => handleOnchange()}
+								value={loginData.password}
+								inputProps={{
+									className: "border !border-gray-500 !outline-gray-500	block rounded-[0.625rem] w-full h-12 px-4 py-3 text-sm !decoration-gray-500 !text-gray-500 ",
+								}}
+							/>
+							<div className="text-red-500">{errorMessage && errorMessage.password && <p>{errorMessage.password}</p>}</div>
+						</div>
 					</div>
 					<div className=" w-full">
 						{/* <WbcMask isFullScreen={false} /> */}

@@ -1,6 +1,13 @@
-export type UseActionStateResult<T> = {
+export interface FieldErrors {
+	[key: string]: string | null;
+}
+
+export interface UseActionStateResult<T, R> {
 	state: T;
 	isLoading: boolean;
-	error: T | null;
-	execute: (action: () => Promise<T>) => void;
-};
+	error: Error | null;
+	fieldErrors: FieldErrors;
+	execute: (formData: T, validate: (formData: T) => FieldErrors, action: () => Promise<R>) => void;
+	clearFieldError: (field: string) => void;
+	response: R | null;
+}
