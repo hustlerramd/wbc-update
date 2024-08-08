@@ -7,12 +7,12 @@ const AuthLeftSection = dynamic(() => import("@/modules/auth/components/authLeft
 const inter = Inter({ subsets: ["latin"] });
 
 export async function generateMetadata(): Promise<Metadata> {
-	const res = await fetch(siteConstants.ENV.SERVER_URL + "meta/register");
-	if (!res.ok) {
-		throw new Error("Failed to fetch data");
+	try {
+		const res = await fetch(siteConstants.ENV.SERVER_URL + "meta/register");
+		return res.json();
+	} catch (error) {
+		return new Promise<Metadata>(() => ({}));
 	}
-
-	return res.json();
 }
 export default async function RootLayout({
 	children,
