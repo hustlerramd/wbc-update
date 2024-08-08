@@ -12,6 +12,7 @@ import { LoginDataType } from "@/modules/core/models/DVM";
 import { FieldErrors } from "@/model/DVM/core.dvm";
 import WbcMask from "@/modules/core/components/WbcMask";
 import WBCModalWBC from "@/modules/core/components/WbcModal";
+import ForgotPasswordView from "../forgotPasswordView";
 type LoginViewProps = {
 	handleLoginClick: React.MouseEventHandler<HTMLButtonElement>;
 	handleForgotLinkClick: Function;
@@ -30,7 +31,9 @@ const LoginView: React.FC<LoginViewProps> = (props: LoginViewProps) => {
 
 	return (
 		<div className="basis-full md:basis-3/4 lg:basis-1/2 !w-full !min-w-full content-center select-none	">
-			<WBCModalWBC openModal={showForgotPasswordModal} onClose={closeForgotPasswordModal} maskBlured={false} />
+			<WBCModalWBC openModal={showForgotPasswordModal} onClose={closeForgotPasswordModal} maskBlured={false}>
+				<ForgotPasswordView />
+			</WBCModalWBC>
 			<div className="items-center max-w-[38rem] w-full flex justify-center flex-col gap-5 p-5 mx-auto">
 				<WbcImage src="/img/header-logo.svg" alt="logo" height={130} width={130} />
 				<div className="w-full flex flex-col gap-3 p-4 text-black ">
