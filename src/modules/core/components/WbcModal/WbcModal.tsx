@@ -1,56 +1,26 @@
 "use client";
 import React, { Dispatch, Fragment, SetStateAction } from "react";
+import WbcMask from "../WbcMask";
+import WbcTileCard from "../WbcTileCard";
+import { ModalProps } from "../../models/DVM";
 
-interface WBCModalProps {
-	setOpenModal: Dispatch<SetStateAction<boolean>>;
-	openModal: boolean;
-	maskBlured?: boolean;
-	children?: React.ReactNode;
-}
-
-const WBCModalWBC = (props: WBCModalProps) => {
-	const { setOpenModal, openModal, maskBlured, children } = props ?? {};
-	return (
-		<div>
-			{/* <Dialog
-                as="div"
-                className="relative  z-10"
-                onClose={() => setOpenModal(false)}
-            >
-                <Transition.Child
-                    as={Fragment}
-                    enter="ease-out duration-300"
-                    enterFrom="opacity-0"
-                    enterTo="opacity-100"
-                    leave="ease-in duration-200"
-                    leaveFrom="opacity-100"
-                    leaveTo="opacity-0"
-                >
-                    <div
-                        className={`fixed inset-0 bg-black bg-opacity-25 ${
-                            maskBlured ? " backdrop-blur-md " : " "
-                        }`}
-                    />
-                </Transition.Child>
-
-                <div className="fixed inset-0 overflow-y-auto">
-                    <div className="flex min-h-full items-center justify-center p-2 md:p-4 text-center">
-                        <Transition.Child
-                            as={Fragment}
-                            enter="ease-out duration-300"
-                            enterFrom="opacity-0 scale-95"
-                            enterTo="opacity-100 scale-100"
-                            leave="ease-in duration-200"
-                            leaveFrom="opacity-100 scale-100"
-                            leaveTo="opacity-0 scale-95"
-                        >
-                            {children}
-                        </Transition.Child>
-                    </div>
-                </div>
-            </Dialog> */}
-		</div>
-	);
+const WBCModalWBC = (props: ModalProps) => {
+	const { openModal, onClose, maskBlured = false, children, showCloseButton = true, closeOnOutsideClick = true } = props ?? {};
+	return openModal ? (
+		<WbcMask onClick={closeOnOutsideClick ? onClose : () => {}} isFullScreen={true} isblured={maskBlured}>
+			<WbcTileCard>
+				{showCloseButton ? (
+					<button
+						className="absolute text-2xl hover:bold outline-0 hover:outline-red-500 hover:outline rounded-full aspect-square line hover:outline-2 top-2 right-3 text-gray-500 hover:text-gray-700 leading-5 px-1"
+						onClick={() => onClose()}
+					>
+						&times;
+					</button>
+				) : null}
+				{children}
+			</WbcTileCard>
+		</WbcMask>
+	) : null;
 };
 
 export default WBCModalWBC;

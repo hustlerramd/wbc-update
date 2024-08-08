@@ -31,7 +31,7 @@ const useActionState = <T, R>(initialState: T, InitialResonse: R | null): UseAct
 		}
 	}, []);
 	const clearFieldError = (field: string) => {
-		console.log("object", field);
+		setError(null);
 		setFieldErrors((prevErrors) => ({
 			...prevErrors,
 			[field]: null,

@@ -10,22 +10,27 @@ import { LoginFormNames } from "../../model/constants/login.form";
 import { btnEnum } from "@/model/enum/component.enum";
 import { LoginDataType } from "@/modules/core/models/DVM";
 import { FieldErrors } from "@/model/DVM/core.dvm";
+import WbcMask from "@/modules/core/components/WbcMask";
+import WBCModalWBC from "@/modules/core/components/WbcModal";
 type LoginViewProps = {
 	handleLoginClick: React.MouseEventHandler<HTMLButtonElement>;
-	handlefORGOTClick: Function;
+	handleForgotLinkClick: Function;
+	closeForgotPasswordModal: Function;
 	handleOnchange: (name: string, value: string) => void;
 	loginData: LoginDataType;
 	errorMessage: FieldErrors;
+	showForgotPasswordModal: boolean;
 	isLoading: boolean;
 	error: Error | null;
 };
 const LoginView: React.FC<LoginViewProps> = (props: LoginViewProps) => {
 	const { t } = useTranslation();
 	const { pending } = useFormStatus();
-	const { handleLoginClick, handlefORGOTClick, errorMessage, handleOnchange, loginData, isLoading, error } = props;
+	const { handleLoginClick, handleForgotLinkClick, showForgotPasswordModal, closeForgotPasswordModal, errorMessage, handleOnchange, loginData, isLoading, error } = props;
 
 	return (
 		<div className="basis-full md:basis-3/4 lg:basis-1/2 !w-full !min-w-full content-center select-none	">
+			<WBCModalWBC openModal={showForgotPasswordModal} onClose={closeForgotPasswordModal} maskBlured={false} />
 			<div className="items-center max-w-[38rem] w-full flex justify-center flex-col gap-5 p-5 mx-auto">
 				<WbcImage src="/img/header-logo.svg" alt="logo" height={130} width={130} />
 				<div className="w-full flex flex-col gap-3 p-4 text-black ">
@@ -61,11 +66,11 @@ const LoginView: React.FC<LoginViewProps> = (props: LoginViewProps) => {
 						</div>
 					</div>
 					<div className=" w-full">
-						{/* <WbcMask isFullScreen={false} /> */}
+						{error ? <span className="w-full text-center flex flex-row justify-center flex-auto ">{error.message}</span> : null}
 						<span className="w-full text-right flex flex-row justify-end	flex-end ">
 							<WbcButton
 								btnType={btnEnum.action}
-								onClick={() => handlefORGOTClick()}
+								onClick={() => handleForgotLinkClick()}
 								className={"block h-8 brightness-100 hover:brightness-125 text-right text-sm hover:underline !decoration-[#F8408C] text-primary "}
 							>
 								{t("auth.action.ForgotPassword")}

@@ -63,7 +63,10 @@ export type SvgWBCType = {
 };
 
 export type WbcMaskType = {
+	onClick: Function;
+	isblured?: boolean;
 	isFullScreen?: boolean;
+	children?: React.ReactNode;
 };
 export type WBCEmailFormInputType = {
 	inputProps?: WBCEmailInputType;
