@@ -2,7 +2,6 @@ import React, { FC, useState } from "react";
 import LoginView from "../../components/loginView";
 import { PureComponentType } from "@/model/DVM/components.dvm";
 import { LoginDataType, LoginResponseType } from "@/modules/core/models/DVM";
-import { authenticate } from "@/app/lib/action";
 import WBC_HOOKS from "@/helper/hooks";
 import WBC_API from "@/api";
 import API_ROUTES from "../../model/constants/constants";
