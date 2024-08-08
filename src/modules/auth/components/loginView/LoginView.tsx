@@ -13,7 +13,7 @@ import { FieldErrors } from "@/model/DVM/core.dvm";
 type LoginViewProps = {
 	handleLoginClick: React.MouseEventHandler<HTMLButtonElement>;
 	handlefORGOTClick: Function;
-	handleOnchange: Function;
+	handleOnchange: (name: string, value: string) => void;
 	loginData: LoginDataType;
 	errorMessage: FieldErrors;
 	isLoading: boolean;
@@ -36,7 +36,7 @@ const LoginView: React.FC<LoginViewProps> = (props: LoginViewProps) => {
 							placeholder={t("auth.form.email.placeholder")}
 							required
 							value={loginData.email}
-							onChange={() => handleOnchange()}
+							handleChange={handleOnchange}
 							inputProps={{
 								className: "border !border-gray-500 !outline-gray-500	block rounded-[0.625rem] w-full h-12 px-4 py-3 text-sm !decoration-gray-500 !text-gray-500 ",
 							}}
@@ -51,7 +51,7 @@ const LoginView: React.FC<LoginViewProps> = (props: LoginViewProps) => {
 								name={LoginFormNames.Password}
 								placeholder={t("auth.form.password.placeholder")}
 								required
-								onChange={() => handleOnchange()}
+								handleChange={handleOnchange}
 								value={loginData.password}
 								inputProps={{
 									className: "border !border-gray-500 !outline-gray-500	block rounded-[0.625rem] w-full h-12 px-4 py-3 text-sm !decoration-gray-500 !text-gray-500 ",

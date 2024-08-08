@@ -6,7 +6,7 @@ const EmailInputWBC = dynamic(() => import("../../inputs/EmailInputWBC"), { ssr:
 
 const EmailFormWBC: React.FC<WBCEmailFormInputType> = (props: WBCEmailFormInputType) => {
 	const [emailInputWBCProps, setEmailInputWBCProps] = React.useState<WBCEmailInputType>({});
-	const { label, name, onChange, value, placeholder, inputProps, required } = props;
+	const { label, name, handleChange, value, placeholder, inputProps, required } = props;
 	useEffect(() => {
 		let emailInputProps: WBCEmailInputType = {};
 		emailInputProps = { ...inputProps };
@@ -19,8 +19,8 @@ const EmailFormWBC: React.FC<WBCEmailFormInputType> = (props: WBCEmailFormInputT
 		setEmailInputWBCProps(emailInputProps);
 	}, [props]);
 	const handleOnChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-		if (onChange) {
-			onChange(name as string, event.target.value);
+		if (handleChange !== undefined) {
+			handleChange(props.name as string, event.target.value);
 		}
 	};
 

@@ -72,7 +72,7 @@ export type WBCEmailFormInputType = {
 	placeholder?: string;
 	required?: boolean;
 	value?: string;
-	onChange?: (name: string, value: string) => void;
+	handleChange: (name: string, value: string) => void;
 };
 export type WBCPasswordFormInputType = {
 	inputProps?: WBCPasswordInputType;
@@ -82,5 +82,5 @@ export type WBCPasswordFormInputType = {
 	required?: boolean;
 	showEye?: boolean;
 	value?: string;
-	onChange?: (name: string, value: string) => void;
+	handleChange?: (name: string, value: string) => void;
 };

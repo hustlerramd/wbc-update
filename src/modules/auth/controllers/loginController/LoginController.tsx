@@ -25,6 +25,7 @@ const LoginController: React.FC<PureComponentType> = () => {
 		null
 	);
 	const handleOnchange = (name: string, value: any) => {
+		console.log("handleOnchange", name);
 		clearFieldError(name);
 		setLoginData((data) => {
 			return { ...data, [name]: value };
