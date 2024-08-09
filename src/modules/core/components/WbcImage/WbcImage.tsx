@@ -23,11 +23,11 @@ const WbcImage: React.FC<WBCImageType> = (props: WBCImageType) => {
 
 	return fill ? (
 		<div className={parentClass}>
-			<Image src={imageSrc} alt={alt} fill={true} priority={priority} {...imageProps} />;
+			<Image src={imageSrc} alt={alt} fill={true} priority={priority} {...imageProps} />
 		</div>
 	) : (
 		<div className={parentClass}>
-			<Image src={imageSrc} alt={alt} height={height} width={width} priority={priority} {...imageProps} />;
+			<Image src={imageSrc} alt={alt} height={height} width={width} priority={priority} {...imageProps} />
 		</div>
 	);
 };
