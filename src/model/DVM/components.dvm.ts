@@ -1,8 +1,10 @@
 import { ImageLoader, OnLoadingComplete, PlaceholderValue, StaticImport } from "next/dist/shared/lib/get-img-props";
-import React, { InputHTMLAttributes } from "react";
+import React, { ChangeEvent, InputHTMLAttributes } from "react";
 import { btnEnum } from "../enum/component.enum";
 import { LinkProps } from "next/link";
-export type PureComponentType = {};
+export type PureComponentType = {
+	children?: React.ReactNode;
+};
 export type NextJSImageType = Omit<
 	React.DetailedHTMLProps<React.ImgHTMLAttributes<HTMLImageElement>, HTMLImageElement>,
 	"height" | "width" | "loading" | "ref" | "alt" | "src" | "srcSet"
@@ -42,7 +44,13 @@ export type WBCImageType = NextJSImageType & {
 	fill?: boolean | undefined;
 	priority?: boolean | undefined;
 };
-export type WBCEmailInputType = InputHTMLAttributes<HTMLInputElement>;
+export type WBCTextInputType = InputHTMLAttributes<HTMLInputElement>;
+export type WBCEmailInputType = WBCTextInputType;
+export type WBCFileInputType = WBCTextInputType & {
+	inputRefUploadFile: React.MutableRefObject<HTMLInputElement | null>;
+	setImgProfileTmp: React.Dispatch<React.SetStateAction<string>>;
+	setImgFileTmp: React.Dispatch<React.SetStateAction<ChangeEvent<HTMLInputElement> | undefined>>;
+};
 
 export type WBCPasswordInputType = InputHTMLAttributes<HTMLInputElement> & {
 	showEye?: boolean;
@@ -76,6 +84,15 @@ export type WBCEmailFormInputType = {
 	required?: boolean;
 	value?: string;
 	handleChange: (name: string, value: string) => void;
+};
+export type WBCTextFormInputType = {
+	inputProps?: WBCEmailInputType;
+	name?: string;
+	label?: React.ReactNode;
+	placeholder?: string;
+	required?: boolean;
+	value?: string;
+	handleChange?: (name: string, value: string) => void;
 };
 export type WBCPasswordFormInputType = {
 	inputProps?: WBCPasswordInputType;

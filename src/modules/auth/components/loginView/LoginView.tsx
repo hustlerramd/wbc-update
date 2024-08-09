@@ -22,10 +22,22 @@ type LoginViewProps = {
 	showForgotPasswordModal: boolean;
 	isLoading: boolean;
 	error: Error | null;
+	moveToRegistration: Function;
 };
 const LoginView: React.FC<LoginViewProps> = (props: LoginViewProps) => {
 	const { t } = useTranslation();
-	const { handleLoginClick, handleForgotLinkClick, showForgotPasswordModal, closeForgotPasswordModal, errorMessage, handleOnchange, loginData, isLoading, error } = props;
+	const {
+		handleLoginClick,
+		handleForgotLinkClick,
+		showForgotPasswordModal,
+		closeForgotPasswordModal,
+		errorMessage,
+		handleOnchange,
+		moveToRegistration,
+		loginData,
+		isLoading,
+		error,
+	} = props;
 
 	return (
 		<div className="basis-full md:basis-3/4 lg:basis-1/2 !w-full !min-w-full content-center select-none	">
@@ -92,7 +104,7 @@ const LoginView: React.FC<LoginViewProps> = (props: LoginViewProps) => {
 							<span className="text-primary">
 								<WbcButton
 									btnType={btnEnum.action}
-									onClick={handleLoginClick}
+									onClick={() => moveToRegistration()}
 									className={"inline text-left text-md brightness-100 hover:brightness-125 hover:underline !decoration-[#F8408C] text-primary "}
 								>
 									{t("auth.action.Register")}

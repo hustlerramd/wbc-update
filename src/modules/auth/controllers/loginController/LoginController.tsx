@@ -7,12 +7,16 @@ import WBC_API from "@/api";
 import API_ROUTES from "../../model/constants/constants";
 import { validateLogin } from "../../helper/login.helper";
 import ViewHelper from "@/helper/view";
+import { useRouter } from "next/navigation";
+import siteConstants from "@/model/constants";
 
 const LoginController: FC<PureComponentType> = () => {
+	const router = useRouter();
 	const [loginData, setLoginData] = useState<LoginDataType>({ email: "", password: "" });
 	const [showForgotPasswordModal, setShowForgotPasswordModal] = useState<boolean>(false);
 	const { state, isLoading, error, fieldErrors, execute, clearFieldError } = WBC_HOOKS.useActionState<LoginDataType, LoginResponseType>({ email: "", password: "" }, null);
 	const handleOnchange = (name: string, value: any) => ViewHelper.handleChangeHelper<LoginDataType>(name, value, clearFieldError, setLoginData);
+	const moveToRegistration = () => router.push(siteConstants.RoutesConst.registrationPage);
 	const serverLogin = async () => {
 		const response = await WBC_API.post(API_ROUTES.LOGIN, loginData);
 		if (!response.status || response.status > 300) {
@@ -44,6 +48,7 @@ const LoginController: FC<PureComponentType> = () => {
 			showForgotPasswordModal={showForgotPasswordModal}
 			handleForgotLinkClick={handleForgotLinkClick}
 			closeForgotPasswordModal={closeForgotPasswordModal}
+			moveToRegistration={moveToRegistration}
 		/>
 	);
 };

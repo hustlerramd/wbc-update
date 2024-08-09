@@ -22,9 +22,9 @@ const ForgotPasswordController: React.FC<ForgotPasswordControllerProps> = (props
 		}
 		return response.data as ForgotPasswordResponseType;
 	};
-	const handleOnchange = (name: string, value: any) => ViewHelper.handleChangeHelper<ForgotPasswordDataType>(name, value, clearFieldError, setForgotPasswordData);
+	const handleOnchange = (name: string, value: string) => ViewHelper.handleChangeHelper<ForgotPasswordDataType>(name, value, clearFieldError, setForgotPasswordData);
 
-	const handleForgotPasswordClick = (event: any) => {
+	const handleForgotPasswordClick = (event: React.MouseEvent<HTMLButtonElement>) => {
 		if (isLoading) {
 			event.preventDefault();
 		} else {
