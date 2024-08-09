@@ -1,14 +1,10 @@
-import { AllowedFileTypes, ImageAllowedFileTypeString, ImageSize, ImageSizeErrorMessage, ImageTypeErrorMessage } from "@/model/constants/files";
+import { ImageAllowedFileTypeString } from "@/model/constants/files";
 import { INPUT_TYPE } from "@/modules/core/models/constants/constants";
 import React from "react";
-import { WBCFileInputType } from "@/model/DVM/components.dvm";
+import { WBCImageInputType } from "@/model/DVM/components.dvm";
 import { ImageInputWBCChangeHelper } from "@/helper/view/view.helper";
 
-type ImageInputWBCProps = {
-	//
-};
-
-const ImageInputWBC: React.FC<WBCFileInputType> = (props: WBCFileInputType) => {
+const ImageInputWBC: React.FC<WBCImageInputType> = (props: WBCImageInputType) => {
 	const { inputRefUploadFile, setImgProfileTmp, setImgFileTmp } = props;
 	return (
 		<input

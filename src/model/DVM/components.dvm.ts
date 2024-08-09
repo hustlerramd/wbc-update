@@ -46,7 +46,7 @@ export type WBCImageType = NextJSImageType & {
 };
 export type WBCTextInputType = InputHTMLAttributes<HTMLInputElement>;
 export type WBCEmailInputType = WBCTextInputType;
-export type WBCFileInputType = WBCTextInputType & {
+export type WBCImageInputType = WBCTextInputType & {
 	inputRefUploadFile: React.MutableRefObject<HTMLInputElement | null>;
 	setImgProfileTmp: React.Dispatch<React.SetStateAction<string>>;
 	setImgFileTmp: React.Dispatch<React.SetStateAction<ChangeEvent<HTMLInputElement> | undefined>>;
@@ -86,7 +86,17 @@ export type WBCEmailFormInputType = {
 	handleChange: (name: string, value: string) => void;
 };
 export type WBCTextFormInputType = {
-	inputProps?: WBCEmailInputType;
+	inputProps?: WBCTextInputType;
+	name?: string;
+	label?: React.ReactNode;
+	placeholder?: string;
+	required?: boolean;
+	value?: string;
+	handleChange?: (name: string, value: string) => void;
+};
+export type WBCImageFormInputType = WBCImageInputType & {
+	inputProps?: WBCImageInputType;
+	imageProfileTmp: string;
 	name?: string;
 	label?: React.ReactNode;
 	placeholder?: string;

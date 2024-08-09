@@ -12,6 +12,7 @@ import { AllowedFileTypes, ImageSize, ImageSizeErrorMessage, ImageTypeErrorMessa
 import WbcToaster from "@/modules/core/components/WbcToaster";
 import TextFormWBC from "@/modules/core/components/forms/TextFormWBC";
 import ImageInputWBC from "@/modules/core/components/inputs/ImageInputWBC";
+import ImageFormWBC from "@/modules/core/components/forms/ImageFormWBC";
 
 type RegisterViewProps = {
 	handleRegisterationClick: React.MouseEventHandler<HTMLButtonElement>;
@@ -38,7 +39,14 @@ const RegisterView: React.FC<RegisterViewProps> = (props: RegisterViewProps) => 
 					<div className="flex flex-col max-h-screen mb-5">
 						<div className="grid grid-cols-2 gap-2">
 							<div className="flex items-center justify-center w-full">
-								<label
+								<ImageFormWBC
+									imageProfileTmp={imageProfileTmp}
+									inputRefUploadFile={inputRefUploadFile}
+									setImgFileTmp={setImgFileTmp}
+									setImgProfileTmp={setImgProfileTmp}
+									label={"Upload profile"}
+								/>
+								{/* <label
 									className="flex flex-col w-full h-32 border rounded-lg border-gray-500 border-solid hover:bg-gray-100 hover:border-gray-500 hover:cursor-pointer"
 									onClick={() => inputRefUploadFile?.current?.click()}
 								>
@@ -53,7 +61,7 @@ const RegisterView: React.FC<RegisterViewProps> = (props: RegisterViewProps) => 
 										</div>
 									)}
 								</label>
-								<ImageInputWBC inputRefUploadFile={inputRefUploadFile} setImgProfileTmp={setImgProfileTmp} setImgFileTmp={setImgFileTmp} />
+								<ImageInputWBC inputRefUploadFile={inputRefUploadFile} setImgProfileTmp={setImgProfileTmp} setImgFileTmp={setImgFileTmp} /> */}
 							</div>
 
 							<div className="flex flex-col px-1.5">
