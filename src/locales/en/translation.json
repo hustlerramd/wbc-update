@@ -2,6 +2,8 @@
 	"auth": {
 		"text": {
 			"Dont_have_an_account": "Don’t have an account? ",
+			"Reset_Password_in_two_quick_steps": "Reset Password in two quick steps ",
+			"Forgot_Password": "Forgot Password? ",
 			"Empowering_ambitious_women_to_succeed": "Empowering ambitious women to succeed",
 			"Welcome_to": "Welcome to",
 			"Womens_Business_Club": "Women's Business Club"
@@ -9,7 +11,9 @@
 		"action": {
 			"login": "Login",
 			"Register": "Register",
-			"ForgotPassword": "Forgot Password?"
+			"ForgotPassword": "Forgot Password?",
+			"ResetPassword": "Reset Password",
+			"Back": "Back"
 		},
 		"form": {
 			"email": {

@@ -35,15 +35,15 @@ const LoginController: FC<PureComponentType> = () => {
 	};
 	return (
 		<LoginView
-			handleLoginClick={handleLoginClick}
+			loginData={state}
 			isLoading={isLoading}
-			showForgotPasswordModal={showForgotPasswordModal}
 			error={error}
-			handleForgotLinkClick={handleForgotLinkClick}
-			closeForgotPasswordModal={closeForgotPasswordModal}
 			errorMessage={fieldErrors}
 			handleOnchange={handleOnchange}
-			loginData={state}
+			handleLoginClick={handleLoginClick}
+			showForgotPasswordModal={showForgotPasswordModal}
+			handleForgotLinkClick={handleForgotLinkClick}
+			closeForgotPasswordModal={closeForgotPasswordModal}
 		/>
 	);
 };
