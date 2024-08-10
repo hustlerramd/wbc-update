@@ -1,14 +1,23 @@
 import { ImageLoader, OnLoadingComplete, PlaceholderValue, StaticImport } from "next/dist/shared/lib/get-img-props";
-import React, { ChangeEvent, InputHTMLAttributes } from "react";
+import React, {
+	ButtonHTMLAttributes,
+	ChangeEvent,
+	DetailedHTMLProps,
+	Dispatch,
+	ImgHTMLAttributes,
+	InputHTMLAttributes,
+	MutableRefObject,
+	OptionHTMLAttributes,
+	ReactNode,
+	RefAttributes,
+	SetStateAction,
+} from "react";
 import { btnEnum } from "../enum/component.enum";
 import { LinkProps } from "next/link";
 export type PureComponentType = {
-	children?: React.ReactNode;
+	children?: ReactNode;
 };
-export type NextJSImageType = Omit<
-	React.DetailedHTMLProps<React.ImgHTMLAttributes<HTMLImageElement>, HTMLImageElement>,
-	"height" | "width" | "loading" | "ref" | "alt" | "src" | "srcSet"
-> & {
+export type NextJSImageType = Omit<DetailedHTMLProps<ImgHTMLAttributes<HTMLImageElement>, HTMLImageElement>, "height" | "width" | "loading" | "ref" | "alt" | "src" | "srcSet"> & {
 	src: string | StaticImport;
 	alt: string;
 	width?: number | `${number}` | undefined;
@@ -28,11 +37,13 @@ export type NextJSImageType = Omit<
 	objectPosition?: string | undefined;
 	lazyBoundary?: string | undefined;
 	lazyRoot?: string | undefined;
-} & React.RefAttributes<HTMLImageElement | null>;
+} & RefAttributes<HTMLImageElement | null>;
 export type NextLink = LinkProps;
 
-export type NextInput = React.DetailedHTMLProps<React.InputHTMLAttributes<HTMLInputElement>, HTMLInputElement>;
-export type NextButtonProps = React.DetailedHTMLProps<React.ButtonHTMLAttributes<HTMLButtonElement>, HTMLButtonElement>;
+export type NextInput = DetailedHTMLProps<InputHTMLAttributes<HTMLInputElement>, HTMLInputElement>;
+export type NextButtonProps = DetailedHTMLProps<ButtonHTMLAttributes<HTMLButtonElement>, HTMLButtonElement>;
+export type NextSelectInputType = InputHTMLAttributes<HTMLSelectElement>;
+export type NextSelectOptionInputType = OptionHTMLAttributes<HTMLOptionElement>;
 
 export type WBCImageType = NextJSImageType & {
 	parentClass?: string;
@@ -47,9 +58,18 @@ export type WBCImageType = NextJSImageType & {
 export type WBCTextInputType = InputHTMLAttributes<HTMLInputElement>;
 export type WBCEmailInputType = WBCTextInputType;
 export type WBCImageInputType = WBCTextInputType & {
-	inputRefUploadFile: React.MutableRefObject<HTMLInputElement | null>;
-	setImgProfileTmp: React.Dispatch<React.SetStateAction<string>>;
-	setImgFileTmp: React.Dispatch<React.SetStateAction<ChangeEvent<HTMLInputElement> | undefined>>;
+	inputRefUploadFile: MutableRefObject<HTMLInputElement | null>;
+	setImgProfileTmp: Dispatch<SetStateAction<string>>;
+	setImgFileTmp: Dispatch<SetStateAction<ChangeEvent<HTMLInputElement> | undefined>>;
+};
+export type WBCSelectdefaultOptionType = NextSelectOptionInputType & {
+	hasDefault?: boolean;
+};
+export type WBCSelectOptionType = NextSelectOptionInputType & {};
+export type WBCSelectInputType = {
+	selectProps: NextSelectInputType;
+	defaultOptionProps: WBCSelectdefaultOptionType;
+	selectOptions: WBCSelectOptionType[];
 };
 
 export type WBCPasswordInputType = InputHTMLAttributes<HTMLInputElement> & {
@@ -62,7 +82,7 @@ export type WbcButtonProps = NextButtonProps & {
 
 export type WBCLinkType = LinkProps & {
 	openInNewTab?: boolean;
-	children?: React.ReactNode;
+	children?: ReactNode;
 };
 export type SvgWBCType = {
 	color?: string;
@@ -74,12 +94,12 @@ export type WbcMaskType = {
 	onClick: Function;
 	isblured?: boolean;
 	isFullScreen?: boolean;
-	children?: React.ReactNode;
+	children?: ReactNode;
 };
 export type WBCEmailFormInputType = {
 	inputProps?: WBCEmailInputType;
 	name?: string;
-	label?: React.ReactNode;
+	label?: ReactNode;
 	placeholder?: string;
 	required?: boolean;
 	value?: string;
@@ -88,7 +108,7 @@ export type WBCEmailFormInputType = {
 export type WBCTextFormInputType = {
 	inputProps?: WBCTextInputType;
 	name?: string;
-	label?: React.ReactNode;
+	label?: ReactNode;
 	placeholder?: string;
 	required?: boolean;
 	value?: string;
@@ -98,7 +118,7 @@ export type WBCImageFormInputType = WBCImageInputType & {
 	inputProps?: WBCImageInputType;
 	imageProfileTmp: string;
 	name?: string;
-	label?: React.ReactNode;
+	label?: ReactNode;
 	placeholder?: string;
 	required?: boolean;
 	value?: string;
@@ -107,10 +127,19 @@ export type WBCImageFormInputType = WBCImageInputType & {
 export type WBCPasswordFormInputType = {
 	inputProps?: WBCPasswordInputType;
 	name?: string;
-	label?: React.ReactNode;
+	label?: ReactNode;
 	placeholder?: string;
 	required?: boolean;
 	showEye?: boolean;
 	value?: string;
 	handleChange?: (name: string, value: string) => void;
+};
+export type WBCSelectFormType = {
+	SelectInputProps: WBCSelectInputType;
+	name: string;
+	label?: ReactNode;
+	placeholder?: string;
+	required?: boolean;
+	value?: string;
+	handleChange: (name: string, value: string) => void;
 };

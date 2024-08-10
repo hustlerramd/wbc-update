@@ -11,7 +11,7 @@ type WbcToasterProps = {
 };
 
 const WbcToaster = (WbcToasterProps: WbcToasterProps) => {
-	const { timer = 2000, html = "", title = "", message = "", icon } = WbcToasterProps;
+	const { timer = 2000, icon, title = "", message = "", html = "" } = WbcToasterProps;
 	Swal.mixin({
 		toast: true,
 		position: TOAST_POSITION.TOP_END,

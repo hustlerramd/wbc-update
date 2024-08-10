@@ -17,18 +17,11 @@ const LoginController: FC<PureComponentType> = () => {
 	const { state, isLoading, error, fieldErrors, execute, clearFieldError } = WBC_HOOKS.useActionState<LoginDataType, LoginResponseType>({ email: "", password: "" }, null);
 	const handleOnchange = (name: string, value: any) => ViewHelper.handleChangeHelper<LoginDataType>(name, value, clearFieldError, setLoginData);
 	const moveToRegistration = () => router.push(siteConstants.RoutesConst.registrationPage);
-	const serverLogin = async () => {
-		const response = await WBC_API.post(API_ROUTES.LOGIN, loginData);
-		if (!response.status || response.status > 300) {
-			throw new Error("Failed to fetch data");
-		}
-		return response.data as LoginResponseType;
-	};
 	const handleLoginClick = (event: any) => {
 		if (isLoading) {
 			event.preventDefault();
 		} else {
-			execute(loginData, validateLogin, serverLogin);
+			execute(loginData, validateLogin, API_ROUTES.LOGIN);
 		}
 	};
 	const handleForgotLinkClick = () => {

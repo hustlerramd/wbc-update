@@ -1,48 +1,40 @@
 import React, { ChangeEvent, useState } from "react";
-import API_ROUTES from "../../model/constants/constants";
-import WBC_API from "@/api";
+import API_ROUTES, { RegisterDataEmpty } from "../../model/constants/constants";
 import WBC_HOOKS from "@/helper/hooks";
 import RegisterView from "../../components/registerView";
 import { RegisterDataType, RegisterResponseType } from "@/modules/core/models/DVM";
 import { PureComponentType } from "@/model/DVM/components.dvm";
 import ViewHelper from "@/helper/view";
 import { validateRegisteration } from "../../helper/login.helper";
-
-const RegisterDataEmpty: RegisterDataType = {
-	birthDay: "",
-	city: "",
-	country: "",
-	email: "",
-	firstName: "",
-	gender: "",
-	lastName: "",
-	mobileNumber: "",
-	password: "",
-	profilePic: "",
-	state: "",
-	userName: "",
-};
+import { s3upload } from "@/helper/S3/aws_s3";
+import siteConstants from "@/model/constants";
+import { useRouter } from "next/navigation";
 
 const RegisterController: React.FC<PureComponentType> = () => {
+	const router = useRouter();
 	const [registerationData, setRegisterationData] = useState<RegisterDataType>(RegisterDataEmpty);
 	const { state, isLoading, error, fieldErrors, execute, clearFieldError } = WBC_HOOKS.useActionState<RegisterDataType, RegisterResponseType>(RegisterDataEmpty, null);
 	const [imageProfileTmp, setImgProfileTmp] = useState<string>("");
 	const [imageFileTmp, setImgFileTmp] = useState<ChangeEvent<HTMLInputElement>>();
 	const handleOnchange = (name: string, value: any) => ViewHelper.handleChangeHelper<RegisterDataType>(name, value, clearFieldError, setRegisterationData);
-	const serverRegisteration = async () => {
-		const response = await WBC_API.post(API_ROUTES.LOGIN, registerationData);
-		if (!response.status || response.status > 300) {
-			throw new Error("Failed to fetch data");
-		}
-		return response.data as RegisterResponseType;
-	};
+	const moveToLogin = () => router.push(siteConstants.RoutesConst.loginPage);
 	const handleRegisterationClick = (event: any) => {
 		if (isLoading) {
 			event.preventDefault();
 		} else {
-			execute(registerationData, validateRegisteration, serverRegisteration);
+			checkFileUpload();
 		}
 	};
+
+	const checkFileUpload = () => {
+		if (imageFileTmp?.bubbles && imageFileTmp.target.files) {
+			const file = imageFileTmp.target.files[0];
+			s3upload(file, (url: string) => execute({ ...registerationData, img_profile: url }, validateRegisteration, API_ROUTES.REGISTER));
+		} else {
+			return execute(registerationData, validateRegisteration, API_ROUTES.REGISTER);
+		}
+	};
+
 	return (
 		<RegisterView
 			registerationData={state}
@@ -54,6 +46,7 @@ const RegisterController: React.FC<PureComponentType> = () => {
 			imageProfileTmp={imageProfileTmp}
 			setImgProfileTmp={setImgProfileTmp}
 			setImgFileTmp={setImgFileTmp}
+			moveToLogin={moveToLogin}
 		/>
 	);
 };

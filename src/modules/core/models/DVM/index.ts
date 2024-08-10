@@ -5,7 +5,7 @@ export type LoginDataType = {
 	password: string;
 };
 export type RegisterDataType = {
-	profilePic: string;
+	img_profile: string;
 	firstName: string;
 	lastName: string;
 	email: string;

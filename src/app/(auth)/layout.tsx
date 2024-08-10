@@ -8,7 +8,7 @@ const inter = Inter({ subsets: ["latin"] });
 
 export async function generateMetadata(): Promise<Metadata> {
 	try {
-		const res = await fetch(siteConstants.ENV.SERVER_URL + "meta/register");
+		const res = await fetch(siteConstants.ENV.SERVER_META_URL + "meta/register");
 		return res.json();
 	} catch (error) {
 		return new Promise<Metadata>(() => ({}));

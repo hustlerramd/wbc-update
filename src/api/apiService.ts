@@ -2,7 +2,7 @@ import siteConstants from "@/model/constants";
 import axios, { AxiosInstance, AxiosRequestConfig, AxiosResponse, InternalAxiosRequestConfig } from "axios";
 
 const apiClient: AxiosInstance = axios.create({
-	baseURL: siteConstants.ENV.SERVER_URL,
+	baseURL: siteConstants.ENV.SERVER_API_URL,
 	headers: {
 		"Content-Type": siteConstants.fileTypes.applicationJson,
 	},
