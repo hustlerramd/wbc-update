@@ -2,6 +2,41 @@
 @tailwind components;
 @tailwind utilities;
 
+html {
+	scroll-behavior: smooth;
+}
+
+::-webkit-scrollbar {
+	width: 7px;
+	background: #f4bdc9;
+}
+
+ul::marker,
+ol::marker {
+	/* Resetting styles */
+	unicode-bidi: normal !important;
+	font-variant-numeric: normal !important;
+	text-transform: none !important;
+	text-indent: 0 !important;
+	text-align: initial !important;
+	text-align-last: initial !important;
+}
+
+li {
+	list-style: none;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+	background: #e755a7;
+	border-radius: 10px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+	background: #e755a7;
+}
+
 :root {
 	--foreground-rgb: 0, 0, 0;
 	--background-start-rgb: 214, 219, 220;
@@ -54,4 +89,28 @@ body {
 	.text-balance {
 		text-wrap: balance;
 	}
+}
+
+.PhoneInputInput-force-custom {
+	@apply relative rounded-md px-2;
+}
+
+.PhoneInputInput-force-custom > select {
+	@apply absolute;
+}
+
+.PhoneInputInput-force-custom > input {
+	@apply border-0 outline-none;
+}
+.PhoneInputInput-force-custom > input:focus {
+	--tw-ring-shadow: none !important;
+	outline: none !important;
+	--PhoneInput-color--focus: #f8408c !important;
+	--PhoneInputCountryFlag-borderColor--focus: #f8408c !important;
+	--PhoneInputCountrySelectArrow-color--focus: #f8408c !important;
+}
+.PhoneInputInternationalIconPhone,
+.PhoneInputCountrySelect:focus + .PhoneInputCountryIcon .PhoneInputInternationalIconGlobe,
+.PhoneInputCountrySelect:focus + .PhoneInputCountryIcon + .PhoneInputCountrySelectArrow {
+	color: #f8408c !important;
 }

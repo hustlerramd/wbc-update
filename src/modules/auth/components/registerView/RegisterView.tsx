@@ -4,18 +4,16 @@ import PasswordFormWBC from "@/modules/core/components/forms/PasswordFormWBC";
 import WbcButton from "@/modules/core/components/WbcButton";
 import WbcImage from "@/modules/core/components/WbcImage";
 import { t } from "i18next";
-import React, { ChangeEvent, Children, LegacyRef, MutableRefObject, useRef } from "react";
+import React, { ChangeEvent, memo, useRef } from "react";
 import { RegisterationFormNames } from "../../model/constants/login.form";
 import { RegisterDataType } from "@/modules/core/models/DVM";
 import { FieldErrors } from "@/model/DVM/core.dvm";
-import { AllowedFileTypes, ImageSize, ImageSizeErrorMessage, ImageTypeErrorMessage } from "@/model/constants/files";
-import WbcToaster from "@/modules/core/components/WbcToaster";
 import TextFormWBC from "@/modules/core/components/forms/TextFormWBC";
-import ImageInputWBC from "@/modules/core/components/inputs/ImageInputWBC";
 import ImageFormWBC from "@/modules/core/components/forms/ImageFormWBC";
-import SelectInputWBC from "@/modules/core/components/inputs/SelectInputWBC";
 import SelectFormWBC from "@/modules/core/components/forms/SelectFormWBC";
 import PhoneFormWBC from "@/modules/core/components/forms/PhoneFormWBC";
+import DateFormWBC from "@/modules/core/components/forms/DateFormWBC";
+import AutoCompleteInputWBC from "@/modules/core/components/inputs/AutoCompleteInputWBC";
 
 type RegisterViewProps = {
 	handleRegisterationClick: React.MouseEventHandler<HTMLButtonElement>;
@@ -28,14 +26,31 @@ type RegisterViewProps = {
 	error: Error | null;
 	imageProfileTmp: string;
 	moveToLogin: Function;
+	countryList: Array<any>;
+	cityList: Array<any>;
+	stateList: Array<any>;
 };
 
 const RegisterView: React.FC<RegisterViewProps> = (props: RegisterViewProps) => {
-	const { handleRegisterationClick, errorMessage, handleOnchange, registerationData, isLoading, error, imageProfileTmp, setImgProfileTmp, setImgFileTmp, moveToLogin } = props;
+	const {
+		handleRegisterationClick,
+		errorMessage,
+		handleOnchange,
+		registerationData,
+		isLoading,
+		error,
+		imageProfileTmp,
+		setImgProfileTmp,
+		setImgFileTmp,
+		moveToLogin,
+		countryList,
+		cityList,
+		stateList,
+	} = props;
 
 	const inputRefUploadFile = useRef<HTMLInputElement | null>(null);
 	return (
-		<div className="basis-full md:basis-3/4 lg:basis-1/2 !w-full !min-w-full content-center select-none	">
+		<div className="basis-full md:basis-3/4 lg:basis-1/2 !w-full !min-w-full content-center select-none overflow-y-auto	">
 			<div className="items-center max-w-[38rem] w-full flex justify-center flex-col gap-5 p-5 mx-auto">
 				<WbcImage src="/img/header-logo.svg" alt="logo" height={130} width={130} />
 				<div className="w-full flex flex-col gap-3 p-4 text-black ">
@@ -117,7 +132,7 @@ const RegisterView: React.FC<RegisterViewProps> = (props: RegisterViewProps) => 
 							<SelectFormWBC
 								name="gender"
 								label="Gender"
-								value=""
+								value={registerationData.gender}
 								required={true}
 								placeholder="Select"
 								handleChange={handleOnchange}
@@ -135,16 +150,27 @@ const RegisterView: React.FC<RegisterViewProps> = (props: RegisterViewProps) => 
 							/>
 						</div>
 						<div className="flex flex-col w-1/2 pl-1">
-							<TextFormWBC
+							<AutoCompleteInputWBC
+								inputProps={{
+									autoComplete: "new-off",
+									className: "border !border-gray-500 !outline-gray-500	block rounded-[0.625rem] w-full h-12 px-4 py-3 text-sm !decoration-gray-500 !text-gray-500 ",
+								}}
+								itemToString={(item) => (item ? item.name : "")}
+								items={countryList}
+								name="country"
+								onSelect={handleOnchange}
+							/>
+							{/* <TextFormWBC
 								handleChange={handleOnchange}
 								label="Country"
 								name="country"
 								value={registerationData.country}
 								placeholder="Country"
 								inputProps={{
+									autoComplete: "new-off",
 									className: "border !border-gray-500 !outline-gray-500	block rounded-[0.625rem] w-full h-12 px-4 py-3 text-sm !decoration-gray-500 !text-gray-500 ",
 								}}
-							/>
+							/> */}
 						</div>
 					</div>
 					<div className="flex flex-row ">
@@ -182,10 +208,25 @@ const RegisterView: React.FC<RegisterViewProps> = (props: RegisterViewProps) => 
 					<div className=" w-full">
 						<PhoneFormWBC
 							handleChange={handleOnchange}
-							label="UserName"
-							name="userName"
-							value={registerationData.city}
-							placeholder="UserName"
+							label="Mobile No."
+							subLabel="(Please select country code)"
+							name="contactNo"
+							value={registerationData.contactNo}
+							placeholder="Enter Mobile number"
+							inputProps={{
+								id: "PhoneInputInput",
+								international: true,
+								countryCallingCodeEditable: false,
+								className: "border !border-gray-500 !outline-gray-500	block rounded-[0.625rem] w-full h-12 px-4 py-3 text-sm !decoration-gray-500 !text-gray-500 ",
+							}}
+						/>
+					</div>
+					<div className=" w-full">
+						<DateFormWBC
+							handleChange={handleOnchange}
+							label="Birthdate"
+							name="birthDate"
+							value={registerationData.birthDate}
 							inputProps={{
 								className: "border !border-gray-500 !outline-gray-500	block rounded-[0.625rem] w-full h-12 px-4 py-3 text-sm !decoration-gray-500 !text-gray-500 ",
 							}}
@@ -196,7 +237,7 @@ const RegisterView: React.FC<RegisterViewProps> = (props: RegisterViewProps) => 
 							handleChange={handleOnchange}
 							label="UserName"
 							name="userName"
-							value={registerationData.city}
+							value={registerationData.userName}
 							placeholder="UserName"
 							inputProps={{
 								className: "border !border-gray-500 !outline-gray-500	block rounded-[0.625rem] w-full h-12 px-4 py-3 text-sm !decoration-gray-500 !text-gray-500 ",
@@ -234,4 +275,4 @@ const RegisterView: React.FC<RegisterViewProps> = (props: RegisterViewProps) => 
 	);
 };
 
-export default RegisterView;
+export default memo(RegisterView);

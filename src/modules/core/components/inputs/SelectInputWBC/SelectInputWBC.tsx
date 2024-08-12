@@ -5,8 +5,9 @@ import SelectInputOtionWBC from "../SelectInputOtionWBC";
 const SelectInputWBC: React.FC<WBCSelectInputType> = (props: WBCSelectInputType) => {
 	const { selectOptions, defaultOptionProps, selectProps } = props;
 	const { hasDefault = false, children, ...restOptionProps } = defaultOptionProps;
+	const { value, ...restSelectProps } = selectProps;
 	return hasDefault === true ? (
-		<select {...selectProps}>
+		<select value={value} {...restSelectProps}>
 			<option key={0} {...restOptionProps}>
 				{children}
 			</option>
@@ -15,7 +16,7 @@ const SelectInputWBC: React.FC<WBCSelectInputType> = (props: WBCSelectInputType)
 			))}
 		</select>
 	) : (
-		<select {...selectProps}>
+		<select value={value} {...restSelectProps}>
 			{selectOptions.map((option: WBCSelectOptionType, index: number) => (
 				<SelectInputOtionWBC {...option} key={index + 1} />
 			))}

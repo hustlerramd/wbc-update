@@ -14,6 +14,7 @@ import React, {
 } from "react";
 import { btnEnum } from "../enum/component.enum";
 import { LinkProps } from "next/link";
+import { DefaultInputComponentProps } from "react-phone-number-input";
 export type PureComponentType = {
 	children?: ReactNode;
 };
@@ -39,6 +40,15 @@ export type NextJSImageType = Omit<DetailedHTMLProps<ImgHTMLAttributes<HTMLImage
 	lazyRoot?: string | undefined;
 } & RefAttributes<HTMLImageElement | null>;
 export type NextLink = LinkProps;
+export type stringKeyValuePair = {
+	key: number;
+	value: string;
+};
+export type numberKeyValuePair = {
+	key: number;
+	value: string;
+};
+export type KeyValuePair = stringKeyValuePair | numberKeyValuePair;
 
 export type NextInput = DetailedHTMLProps<InputHTMLAttributes<HTMLInputElement>, HTMLInputElement>;
 export type NextButtonProps = DetailedHTMLProps<ButtonHTMLAttributes<HTMLButtonElement>, HTMLButtonElement>;
@@ -57,6 +67,15 @@ export type WBCImageType = NextJSImageType & {
 };
 export type WBCTextInputType = InputHTMLAttributes<HTMLInputElement>;
 export type WBCEmailInputType = WBCTextInputType;
+export type WBCDateInputType = WBCTextInputType;
+export type WBCPhoneInputType = DefaultInputComponentProps & {};
+export type AutoCompleteInputType<T> = {
+	items: T[];
+	name: string;
+	onSelect: (name: string, value: string) => void;
+	itemToString: (item: T) => string;
+	inputProps: WBCTextInputType;
+};
 export type WBCImageInputType = WBCTextInputType & {
 	inputRefUploadFile: MutableRefObject<HTMLInputElement | null>;
 	setImgProfileTmp: Dispatch<SetStateAction<string>>;
@@ -105,10 +124,29 @@ export type WBCEmailFormInputType = {
 	value?: string;
 	handleChange: (name: string, value: string) => void;
 };
+export type WBCDateFormInputType = {
+	inputProps?: WBCDateInputType;
+	name?: string;
+	label?: ReactNode;
+	placeholder?: string;
+	required?: boolean;
+	value?: string;
+	handleChange: (name: string, value: string) => void;
+};
 export type WBCTextFormInputType = {
 	inputProps?: WBCTextInputType;
 	name?: string;
 	label?: ReactNode;
+	placeholder?: string;
+	required?: boolean;
+	value?: string;
+	handleChange?: (name: string, value: string) => void;
+};
+export type WBCPhoneFormInputType = {
+	inputProps?: WBCPhoneInputType;
+	name?: string;
+	label?: ReactNode;
+	subLabel?: ReactNode;
 	placeholder?: string;
 	required?: boolean;
 	value?: string;

@@ -1,14 +1,17 @@
-import React, { ChangeEvent, useState } from "react";
-import API_ROUTES, { RegisterDataEmpty } from "../../model/constants/constants";
+"use client";
+import React, { ChangeEvent, useLayoutEffect, useState } from "react";
+import { useRouter } from "next/navigation";
 import WBC_HOOKS from "@/helper/hooks";
-import RegisterView from "../../components/registerView";
 import { RegisterDataType, RegisterResponseType } from "@/modules/core/models/DVM";
 import { PureComponentType } from "@/model/DVM/components.dvm";
-import ViewHelper from "@/helper/view";
-import { validateRegisteration } from "../../helper/login.helper";
-import { s3upload } from "@/helper/S3/aws_s3";
 import siteConstants from "@/model/constants";
-import { useRouter } from "next/navigation";
+import API_ROUTES, { RegisterDataEmpty } from "../../model/constants/constants";
+import { s3upload } from "@/helper/S3/aws_s3";
+import { validateRegisteration } from "../../helper/login.helper";
+import ViewHelper from "@/helper/view";
+import RegisterView from "../../components/registerView";
+import { addressStore } from "@/modules/core/store/addressStore";
+import { shallow } from "zustand/shallow";
 
 const RegisterController: React.FC<PureComponentType> = () => {
 	const router = useRouter();
@@ -25,7 +28,7 @@ const RegisterController: React.FC<PureComponentType> = () => {
 			checkFileUpload();
 		}
 	};
-
+	const { countryList, cityList, stateList, fetchCity, fetchCountry, fetchState, updateCityList } = addressStore((state) => state, shallow);
 	const checkFileUpload = () => {
 		if (imageFileTmp?.bubbles && imageFileTmp.target.files) {
 			const file = imageFileTmp.target.files[0];
@@ -34,10 +37,13 @@ const RegisterController: React.FC<PureComponentType> = () => {
 			return execute(registerationData, validateRegisteration, API_ROUTES.REGISTER);
 		}
 	};
+	useLayoutEffect(() => {
+		fetchCountry();
+	}, []);
 
 	return (
 		<RegisterView
-			registerationData={state}
+			registerationData={registerationData}
 			isLoading={isLoading}
 			error={error}
 			errorMessage={fieldErrors}
@@ -47,6 +53,9 @@ const RegisterController: React.FC<PureComponentType> = () => {
 			setImgProfileTmp={setImgProfileTmp}
 			setImgFileTmp={setImgFileTmp}
 			moveToLogin={moveToLogin}
+			countryList={countryList}
+			cityList={cityList}
+			stateList={stateList}
 		/>
 	);
 };

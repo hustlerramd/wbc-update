@@ -14,9 +14,10 @@ export type RegisterDataType = {
 	country: string;
 	state: string;
 	city: string;
-	mobileNumber: string;
-	birthDay: string;
+	contactNo: string;
+	birthDate: string;
 	userName: string;
+	role: string;
 };
 export type ForgotPasswordDataType = {
 	email: string;

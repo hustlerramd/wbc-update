@@ -1,19 +1,11 @@
-import * as React from "react";
-import PhoneInput from "react-phone-number-input/input";
+import { WBCPhoneInputType } from "@/model/DVM/components.dvm";
+import "react-phone-number-input/style.css";
+import React, { FC, memo } from "react";
+import PhoneInput from "react-phone-number-input";
 
-const PhoneInputWBC: React.FC<any> = () => {
-	return (
-		<PhoneInput
-			id="PhoneInputInput"
-			placeholder="Enter Mobile number"
-			name="contactNo"
-			international={true}
-			countryCallingCodeEditable={false}
-			// value={formValues.contactNo}
-			onChange={() => {}}
-			className={"PhoneInputInput-force-custom border border-gray-500"}
-		/>
-	);
+const PhoneInputWBC: FC<WBCPhoneInputType> = (props: WBCPhoneInputType) => {
+	const { onChange, className, ...rest } = props;
+	return <PhoneInput className={"PhoneInputInput-force-custom " + className} onChange={onChange} {...rest} />;
 };
 
-export default PhoneInputWBC;
+export default memo(PhoneInputWBC);

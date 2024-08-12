@@ -8,16 +8,17 @@ const API_ROUTES = {
 
 export default API_ROUTES;
 export const RegisterDataEmpty: RegisterDataType = {
-	birthDay: "",
+	birthDate: "",
 	city: "",
 	country: "",
 	email: "",
 	firstName: "",
 	gender: "",
 	lastName: "",
-	mobileNumber: "",
+	contactNo: "",
 	password: "",
 	img_profile: "",
 	state: "",
 	userName: "",
+	role: "user",
 };
