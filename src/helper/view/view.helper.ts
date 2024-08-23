@@ -33,3 +33,11 @@ export const ImageInputWBCChangeHelper = (
 		}
 	};
 };
+export const stateListTransform = (stateList: any) => {
+	return stateList.map((state: any) => {
+		return {
+			label: state.name,
+			value: state.iso2,
+		};
+	});
+};

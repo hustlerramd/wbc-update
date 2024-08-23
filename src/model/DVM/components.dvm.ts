@@ -133,6 +133,11 @@ export type WBCDateFormInputType = {
 	value?: string;
 	handleChange: (name: string, value: string) => void;
 };
+
+export type AutoCompleteFormInputType<T> = {
+	inputProps: AutoCompleteInputType<T>;
+	label?: ReactNode;
+};
 export type WBCTextFormInputType = {
 	inputProps?: WBCTextInputType;
 	name?: string;

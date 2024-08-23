@@ -14,6 +14,8 @@ import SelectFormWBC from "@/modules/core/components/forms/SelectFormWBC";
 import PhoneFormWBC from "@/modules/core/components/forms/PhoneFormWBC";
 import DateFormWBC from "@/modules/core/components/forms/DateFormWBC";
 import AutoCompleteInputWBC from "@/modules/core/components/inputs/AutoCompleteInputWBC";
+import AutoCompleteFormWBC from "@/modules/core/components/forms/AutoCompleteFormWBC";
+import { stateListTransform } from "@/helper/view/view.helper";
 
 type RegisterViewProps = {
 	handleRegisterationClick: React.MouseEventHandler<HTMLButtonElement>;
@@ -150,27 +152,19 @@ const RegisterView: React.FC<RegisterViewProps> = (props: RegisterViewProps) => 
 							/>
 						</div>
 						<div className="flex flex-col w-1/2 pl-1">
-							<AutoCompleteInputWBC
+							<AutoCompleteFormWBC
 								inputProps={{
-									autoComplete: "new-off",
-									className: "border !border-gray-500 !outline-gray-500	block rounded-[0.625rem] w-full h-12 px-4 py-3 text-sm !decoration-gray-500 !text-gray-500 ",
+									inputProps: {
+										autoComplete: "new-off",
+										className: "border !border-gray-500 !outline-gray-500	block rounded-[0.625rem] w-full h-12 px-4 py-3 text-sm !decoration-gray-500 !text-gray-500 ",
+									},
+									itemToString: (item) => (item ? item.name : ""),
+									items: countryList,
+									name: "country",
+									onSelect: handleOnchange,
 								}}
-								itemToString={(item) => (item ? item.name : "")}
-								items={countryList}
-								name="country"
-								onSelect={handleOnchange}
-							/>
-							{/* <TextFormWBC
-								handleChange={handleOnchange}
 								label="Country"
-								name="country"
-								value={registerationData.country}
-								placeholder="Country"
-								inputProps={{
-									autoComplete: "new-off",
-									className: "border !border-gray-500 !outline-gray-500	block rounded-[0.625rem] w-full h-12 px-4 py-3 text-sm !decoration-gray-500 !text-gray-500 ",
-								}}
-							/> */}
+							/>
 						</div>
 					</div>
 					<div className="flex flex-row ">
@@ -178,13 +172,13 @@ const RegisterView: React.FC<RegisterViewProps> = (props: RegisterViewProps) => 
 							<SelectFormWBC
 								name="state"
 								label="State"
-								value=""
+								value={registerationData.state}
 								required={true}
 								placeholder="State"
 								handleChange={handleOnchange}
 								SelectInputProps={{
 									defaultOptionProps: {},
-									selectOptions: [],
+									selectOptions: stateListTransform(stateList),
 									selectProps: {
 										id: "state",
 										className: "border !border-gray-500 !outline-gray-500	block rounded-[0.625rem] w-full h-12 px-4 py-3 text-sm !decoration-gray-500 !text-gray-500",

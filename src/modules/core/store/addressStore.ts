@@ -11,8 +11,8 @@ interface AddressProps {
 	fetchCountry: () => void;
 	fetchLanguage: () => void;
 	fetchNewCountry: () => Promise<any>;
-	fetchState: (id: string) => void;
-	fetchCity: (id: string, id2: string) => void;
+	fetchState: (country_id: string) => void;
+	fetchCity: (country_id: string, state_id: string) => void;
 	updateStateList: (newStateList: any[]) => void;
 	updateCityList: (newCityList: any[]) => void;
 }

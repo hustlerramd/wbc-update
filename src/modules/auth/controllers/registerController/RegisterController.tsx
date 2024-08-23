@@ -40,6 +40,12 @@ const RegisterController: React.FC<PureComponentType> = () => {
 	useLayoutEffect(() => {
 		fetchCountry();
 	}, []);
+	useLayoutEffect(() => {
+		fetchState(registerationData.country);
+	}, [registerationData.country]);
+	useLayoutEffect(() => {
+		fetchCity(registerationData.country, registerationData.state);
+	}, [registerationData.state]);
 
 	return (
 		<RegisterView
