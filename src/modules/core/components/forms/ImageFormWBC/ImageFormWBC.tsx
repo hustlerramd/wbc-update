@@ -35,11 +35,11 @@ const ImageFormWBC: React.FC<WBCImageFormInputType> = (props: WBCImageFormInputT
 	return (
 		<div className="flex items-center justify-center w-full">
 			<label
-				className="flex flex-col w-40 h-40 border rounded-lg justify-center border-gray-500 border-solid hover:bg-gray-100 hover:border-gray-500 hover:cursor-pointer"
+				className="flex flex-col w-36 h-36 border rounded-lg justify-center border-gray-500 border-solid hover:bg-gray-100 hover:border-gray-500 hover:cursor-pointer"
 				onClick={() => inputRefUploadFile?.current?.click()}
 			>
 				{imageProfileTmp ? (
-					<WbcImage src={imageProfileTmp} alt="angela" width={300} height={300} className="rounded-lg w-40 h-40 " />
+					<WbcImage src={imageProfileTmp} alt="angela" width={300} height={300} className="rounded-lg w-30 h-30 " />
 				) : (
 					<div className="flex flex-col items-center justify-center">
 						<svg width="39" height="39" viewBox="0 0 39 39" fill="none" xmlns="http://www.w3.org/2000/svg">

@@ -53,13 +53,13 @@ const RegisterView: React.FC<RegisterViewProps> = (props: RegisterViewProps) => 
 	const inputRefUploadFile = useRef<HTMLInputElement | null>(null);
 	return (
 		<div className="basis-full md:basis-3/4 lg:basis-1/2 !w-full !min-w-full content-center select-none overflow-y-auto	">
-			<div className="items-center max-w-[38rem] w-full flex justify-center flex-col gap-5 p-5 mx-auto">
+			<div className="items-center max-w-[38rem] w-full flex justify-center flex-col gap-3 p-3 mx-auto">
 				<WbcImage src="/img/header-logo.svg" alt="logo" height={130} width={130} />
-				<div className="w-full flex flex-col gap-3 p-4 text-black ">
+				<div className="w-full flex flex-col gap-2 p-2 text-black ">
 					<div className="w-full text-lg font-semibold">{t("auth.text.Create_an_account")}</div>
 					<div className="flex flex-col max-h-screen ">
 						<div className="flex flex-row ">
-							<div className="flex items-center justify-center h-40 w-40">
+							<div className="flex items-center justify-center h-30 w-30">
 								<ImageFormWBC
 									imageProfileTmp={imageProfileTmp}
 									inputRefUploadFile={inputRefUploadFile}
@@ -77,7 +77,7 @@ const RegisterView: React.FC<RegisterViewProps> = (props: RegisterViewProps) => 
 										value={registerationData.firstName}
 										placeholder="First name"
 										inputProps={{
-											className: "border !border-gray-500 !outline-gray-500	block rounded-[0.625rem] w-full h-12 px-4 py-3 text-sm !decoration-gray-500 !text-gray-500 ",
+											className: "border !border-gray-500 !outline-gray-500	block rounded-[0.625rem] w-full h-10 px-4 py-2 text-sm !decoration-gray-500 !text-gray-500 ",
 										}}
 									/>
 									<div className="text-red-500">{errorMessage && errorMessage.firstName && <p>{errorMessage.firstName}</p>}</div>
@@ -90,7 +90,7 @@ const RegisterView: React.FC<RegisterViewProps> = (props: RegisterViewProps) => 
 										value={registerationData.lastName}
 										placeholder="Last name"
 										inputProps={{
-											className: "border !border-gray-500 !outline-gray-500	block rounded-[0.625rem] w-full h-12 px-4 py-3 text-sm !decoration-gray-500 !text-gray-500 ",
+											className: "border !border-gray-500 !outline-gray-500	block rounded-[0.625rem] w-full h-10 px-4 py-2 text-sm !decoration-gray-500 !text-gray-500 ",
 										}}
 									/>
 									<div className="text-red-500">{errorMessage && errorMessage.lastName && <p>{errorMessage.lastName}</p>}</div>
@@ -107,7 +107,7 @@ const RegisterView: React.FC<RegisterViewProps> = (props: RegisterViewProps) => 
 							value={registerationData.email}
 							handleChange={handleOnchange}
 							inputProps={{
-								className: "border !border-gray-500 !outline-gray-500	block rounded-[0.625rem] w-full h-12 px-4 py-3 text-sm !decoration-gray-500 !text-gray-500 ",
+								className: "border !border-gray-500 !outline-gray-500	block rounded-[0.625rem] w-full h-10 px-4 py-2 text-sm !decoration-gray-500 !text-gray-500 ",
 							}}
 						/>
 						<div className="text-red-500">{errorMessage && errorMessage.email && <p>{errorMessage.email}</p>}</div>
@@ -123,7 +123,7 @@ const RegisterView: React.FC<RegisterViewProps> = (props: RegisterViewProps) => 
 								handleChange={handleOnchange}
 								value={registerationData.password}
 								inputProps={{
-									className: "border !border-gray-500 !outline-gray-500	block rounded-[0.625rem] w-full h-12 px-4 py-3 text-sm !decoration-gray-500 !text-gray-500 ",
+									className: "border !border-gray-500 !outline-gray-500	block rounded-[0.625rem] w-full h-10 px-4 py-2 text-sm !decoration-gray-500 !text-gray-500 ",
 								}}
 							/>
 							<div className="text-red-500">{errorMessage && errorMessage.password && <p>{errorMessage.password}</p>}</div>
@@ -146,7 +146,7 @@ const RegisterView: React.FC<RegisterViewProps> = (props: RegisterViewProps) => 
 									],
 									selectProps: {
 										id: "gender",
-										className: "border !border-gray-500 !outline-gray-500	block rounded-[0.625rem] w-full h-12 px-4 py-3 text-sm !decoration-gray-500 !text-gray-500",
+										className: "border !border-gray-500 !outline-gray-500	block rounded-[0.625rem] w-full h-10 px-4 py-2 text-sm !decoration-gray-500 !text-gray-500",
 									},
 								}}
 							/>
@@ -156,7 +156,7 @@ const RegisterView: React.FC<RegisterViewProps> = (props: RegisterViewProps) => 
 								inputProps={{
 									inputProps: {
 										autoComplete: "new-off",
-										className: "border !border-gray-500 !outline-gray-500	block rounded-[0.625rem] w-full h-12 px-4 py-3 text-sm !decoration-gray-500 !text-gray-500 ",
+										className: "border !border-gray-500 !outline-gray-500	block rounded-[0.625rem] w-full h-10 px-4 py-2 text-sm !decoration-gray-500 !text-gray-500 ",
 									},
 									itemToString: (item) => (item ? item.name : ""),
 									items: countryList,
@@ -181,21 +181,25 @@ const RegisterView: React.FC<RegisterViewProps> = (props: RegisterViewProps) => 
 									selectOptions: stateListTransform(stateList),
 									selectProps: {
 										id: "state",
-										className: "border !border-gray-500 !outline-gray-500	block rounded-[0.625rem] w-full h-12 px-4 py-3 text-sm !decoration-gray-500 !text-gray-500",
+										className: "border !border-gray-500 !outline-gray-500	block rounded-[0.625rem] w-full h-10 px-4 py-2 text-sm !decoration-gray-500 !text-gray-500",
 									},
 								}}
 							/>
 						</div>
 						<div className="flex flex-col w-1/2 pl-1">
-							<TextFormWBC
-								handleChange={handleOnchange}
-								label="City"
-								name="city"
-								value={registerationData.city}
-								placeholder="City"
+							<AutoCompleteFormWBC
 								inputProps={{
-									className: "border !border-gray-500 !outline-gray-500	block rounded-[0.625rem] w-full h-12 px-4 py-3 text-sm !decoration-gray-500 !text-gray-500 ",
+									inputProps: {
+										placeholder: "City",
+										autoComplete: "new-on",
+										className: "border !border-gray-500 !outline-gray-500	block rounded-[0.625rem] w-full h-10 px-4 py-2 text-sm !decoration-gray-500 !text-gray-500 ",
+									},
+									itemToString: (item) => (item ? item.name : ""),
+									items: cityList,
+									name: "city",
+									onSelect: handleOnchange,
 								}}
+								label="City"
 							/>
 						</div>
 					</div>
@@ -211,7 +215,7 @@ const RegisterView: React.FC<RegisterViewProps> = (props: RegisterViewProps) => 
 								id: "PhoneInputInput",
 								international: true,
 								countryCallingCodeEditable: false,
-								className: "border !border-gray-500 !outline-gray-500	block rounded-[0.625rem] w-full h-12 px-4 py-3 text-sm !decoration-gray-500 !text-gray-500 ",
+								className: "border !border-gray-500 !outline-gray-500	block rounded-[0.625rem] w-full h-10 px-4 py-2 text-sm !decoration-gray-500 !text-gray-500 ",
 							}}
 						/>
 					</div>
@@ -222,7 +226,7 @@ const RegisterView: React.FC<RegisterViewProps> = (props: RegisterViewProps) => 
 							name="birthDate"
 							value={registerationData.birthDate}
 							inputProps={{
-								className: "border !border-gray-500 !outline-gray-500	block rounded-[0.625rem] w-full h-12 px-4 py-3 text-sm !decoration-gray-500 !text-gray-500 ",
+								className: "border !border-gray-500 !outline-gray-500	block rounded-[0.625rem] w-full h-10 px-4 py-2 text-sm !decoration-gray-500 !text-gray-500 ",
 							}}
 						/>
 					</div>
@@ -234,7 +238,7 @@ const RegisterView: React.FC<RegisterViewProps> = (props: RegisterViewProps) => 
 							value={registerationData.userName}
 							placeholder="UserName"
 							inputProps={{
-								className: "border !border-gray-500 !outline-gray-500	block rounded-[0.625rem] w-full h-12 px-4 py-3 text-sm !decoration-gray-500 !text-gray-500 ",
+								className: "border !border-gray-500 !outline-gray-500	block rounded-[0.625rem] w-full h-10 px-4 py-2 text-sm !decoration-gray-500 !text-gray-500 ",
 							}}
 						/>
 					</div>
@@ -245,7 +249,7 @@ const RegisterView: React.FC<RegisterViewProps> = (props: RegisterViewProps) => 
 							btnType={btnEnum.action}
 							onClick={handleRegisterationClick}
 							className={
-								"bg-primary brightness-100 hover:brightness-110 hover:shadow-2xl border block rounded-[0.625rem] w-full h-12 px-4 py-3 text-sm !decoration-white !text-white "
+								"bg-primary brightness-100 hover:brightness-110 hover:shadow-2xl border block rounded-[0.625rem] w-full h-10 px-4 py-2 text-sm !decoration-white !text-white "
 							}
 						>
 							{t("auth.action.Register")}
