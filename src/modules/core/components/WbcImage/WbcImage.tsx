@@ -1,3 +1,4 @@
+"use client";
 import { WBCImageType } from "@/model/DVM/components.dvm";
 import Image from "next/image";
 import * as React from "react";

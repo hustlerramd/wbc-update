@@ -12,7 +12,6 @@ export async function generateMetadata(): Promise<Metadata> {
 		return new Promise<Metadata>(() => ({}));
 	}
 }
-
 export default async function RootLayout({
 	getSSideProps,
 	children,
